@@ -126,24 +126,34 @@
                 var pizza = document.getElementById("pizza");
                 var size = document.getElementById("size");
                 var remarks = document.getElementById("remarks");
+                var table = document.getElementById("table");
                 var key = addEventListener("keydown", function (e) {
-                    console.log(name.value);
-                    if (e.keyCode === 13 && name.value >= 1 && pizza.value >= 1 && size.value >= 1) {
+                    if (e.keyCode === 13) {
+                        if (name.length >= 1 && pizza.length >= 1 && size.length >= 1)
+                        newRow();
+                    }
+                    else {
                         validation();
-                        name.key;
-                        pizza.key;
-                        size.key;
                     }
                 });
 
 
                 function validation() {
-                    var form = document.querySelector("#emptyRow > td > input.form-control");
+                    var form = document.getElementById("name");
                     var addInput = function () {
                         var input = document.createElement("input");
                         input.placeholder = 'Input field';
                         form.appendChild(input);
                     };
+                }
+
+                function newRow() {
+                    var newRow = table.insertRow(1);
+                    var cel1 = newRow.insertCell(0);
+                    var cel2 = newRow.insertCell(1);
+                    var cel3 = newRow.insertCell(2);
+                    var cel4 = newRow.insertCell(3);
+                    var cel5 = newRow.insertCell(4);
                 }
             </script>
         </div>
