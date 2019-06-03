@@ -122,16 +122,17 @@
             </div>
             <script>
                 // Write your code here
-                var a = document.getElementById("name");
-                var b = document.getElementById("pizza");
-                var c = document.getElementById("size");
-                var d = document.getElementById("remarks");
+                var name = document.getElementById("name");
+                var pizza = document.getElementById("pizza");
+                var size = document.getElementById("size");
+                var remarks = document.getElementById("remarks");
                 var key = addEventListener("keydown", function (e) {
-                    if (e.keyCode === 13 && a.value >= 1 && b.value >= 1 && c.value >= 1) {
+                    console.log(name.value);
+                    if (e.keyCode === 13 && name.value >= 1 && pizza.value >= 1 && size.value >= 1) {
                         validation();
-                        a.key;
-                        b.key;
-                        c.key;
+                        name.key;
+                        pizza.key;
+                        size.key;
                     }
                 });
 
