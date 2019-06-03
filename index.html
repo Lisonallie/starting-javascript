@@ -126,13 +126,26 @@
                 var b = document.getElementById("pizza");
                 var c = document.getElementById("size");
                 var d = document.getElementById("remarks");
+                var key = e.which || e.keyCode;
+                var event = addEventListener("keypress");
 
 
-                if (event.key === "Enter") {
-                    if (a.value >= 1 && b.value >= 1 && c.value >= 1) {
-                        
-                    }
-            }
+                if (key === 13 && a.value >= 1 && b.value >= 1 && c.value >= 1) {
+                    (function (e) {
+                        var counter = 0;
+                        var form = document.querySelector("#emptyRow > td > input.form-control");
+                        var addInput = function () {
+                            counter++;
+                            var input = document.createElement("input");
+                            input.id = 'input-' + counter;
+                            input.type = 'text';
+                            input.name = 'name';
+                            input.placeholder = 'Input number' + counter;
+                            form.appendChild(input);
+                            console.log(form);
+                        };
+                    })
+                }
             </script>
         </div>
         <!-- END OF Part 2 -->
