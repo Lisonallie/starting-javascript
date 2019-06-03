@@ -122,14 +122,13 @@
             </div>
             <script>
                 // Write your code here
-                var name = document.getElementById("name");
-                var pizza = document.getElementById("pizza");
-                var size = document.getElementById("size");
-                var remarks = document.getElementById("remarks");
+                var name = document.getElementById("name").value;
+                var pizza = document.getElementById("pizza").value;
+                var size = document.getElementById("size").value;
+                var remarks = document.getElementById("remarks").value;
                 var table = document.getElementById("table");
                 var key = addEventListener("keydown", function (e) {
-                    if (e.keyCode === 13) {
-                        if (name.string >= 1 && pizza.string >= 1 && size.string >= 1)
+                    if (e.keyCode == 13) {
                             newRow();
                     }
                     else {
@@ -137,7 +136,17 @@
                     }
                 });
 
+                function newRow() {
+                    if (name !== "" && pizza !== "" && size !== "") {
 
+                        var table = document.getElementById("pizzaOrders");
+                        var row = table.insertRow(1);
+                        var cel1 = row.insertCell(0);
+                        var cel2 = row.insertCell(1);
+                        var cel3 = row.insertCell(2);
+                        var cel4 = row.insertCell(3);
+                }
+                
                 function validation() {
                     Command: toastr["error"]("Please fill in all of the fields.")
 
@@ -158,15 +167,6 @@
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                     }
-                }
-
-                function newRow() {
-                    var newRow = table.insertRow(1);
-                    var cell1 = newRow.insertCell(0);
-                    var cell2 = newRow.insertCell(1);
-                    var cell3 = newRow.insertCell(2);
-                    var cell4 = newRow.insertCell(3);
-                    var cell5 = newRow.insertCell(4);
                 }
             </script>
         </div>
