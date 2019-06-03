@@ -127,9 +127,9 @@
                 var size = document.getElementById("size").value;
                 var remarks = document.getElementById("remarks").value;
                 var table = document.getElementById("table");
-                var key = addEventListener("keydown", function (e) {
+                addEventListener("keydown", function (e) {
                     if (e.keyCode == 13) {
-                            newRow();
+                        newRow();
                     }
                     else {
                         validation();
@@ -145,8 +145,9 @@
                         var cel2 = row.insertCell(1);
                         var cel3 = row.insertCell(2);
                         var cel4 = row.insertCell(3);
+                    }
                 }
-                
+
                 function validation() {
                     Command: toastr["error"]("Please fill in all of the fields.")
 
