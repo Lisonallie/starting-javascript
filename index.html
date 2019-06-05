@@ -122,12 +122,6 @@
             </div>
             <script>
                 // Write your code here
-                var name = document.getElementById("name").value;
-                var pizza = document.getElementById("pizza").value;
-                var size = document.getElementById("size").value;
-                var remarks = document.getElementById("remarks").value;
-
-
                 document.getElementById("emptyRow").addEventListener("keydown", function (e) {
                     if (e.keyCode == 13 || e.which == 13) {
                         newRow();
@@ -135,14 +129,24 @@
                 });
 
                 function newRow() {
-                    if (name !== "" && pizza !== "" && size !== "") {
+                    var name = document.getElementById("name").value;
+                    var pizza = document.getElementById("pizza").value;
+                    var size = document.getElementById("size").value;
+                    var remarks = document.getElementById("remarks").value;
 
-                        var table = document.getElementById("pizzaOrders");
-                        var row = table.insertRow(1);
-                        var cel1 = row.insertCell(0);
-                        var cel2 = row.insertCell(1);
-                        var cel3 = row.insertCell(2);
-                        var cel4 = row.insertCell(3);
+                    if (name.length > 0 && pizza.length > 0 && size.length > 0) {
+
+                        var table = document.getElementById("pizzaOrders").insertRow(-1);
+                        var cell1 = table.insertCell(0);
+                        var cell2 = table.insertCell(1);
+                        var cell3 = table.insertCell(2);
+
+                        cell1.innerHTML = name;
+                        cell2.innerHTML = pizza;
+                        cell3.innerHTML = size;
+                    }
+                    else {
+                        validation();
                     }
                 }
 
@@ -414,7 +418,7 @@
 
                 function rowContains(searchString, row) {
                     for (var k = 0; k < row.cells.length; k++)
-                        if (row.cells[k].innerHTML.indexOf(searchString) !== -1)
+                        if (row.cells[k].innerHTML.indexOf(searchString) >= 1)
                             return true;
 
                     return false;
