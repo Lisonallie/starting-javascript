@@ -202,24 +202,33 @@
 
             </div>
             <script>
-            // Write your code here
+                // Write your code here
 
-            document.getElementById("launchMe").addEventListener("click", italian)
-            function italian() {
-                var pasta = document.querySelectorAll("#listHolder > span");
 
-                pasta.forEach(list);
-            }
-                
 
-                function list(span) {
+                document.getElementById("launchMe").addEventListener("click", italian)
+
+                function italian() {
+                    var pasta = document.querySelectorAll("#listHolder > span");
+
+                    pasta.forEach(list);
+                }
+
+
+                function list(span, index, arr) {
+                    if (index == arr.length - 1) {
+                        let oldlist = span
+                        let newlist = document.createElement('input');
+                        newlist.setAttribute("placeholder", "Choose your final ingredient.");
+                        oldlist.parentNode.replaceChild(newlist, oldlist);
+                    }
                     let oldlist = span;
                     let newlist = document.createElement('li')
                     newlist.innerHTML = oldlist.innerHTML;
                     oldlist.parentNode.replaceChild(newlist, oldlist);
                 }
 
-                pasta
+
 
 
             </script>
