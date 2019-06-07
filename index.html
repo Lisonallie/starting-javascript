@@ -425,10 +425,11 @@
                 document.getElementById("searchInput").addEventListener("keyup", myFunction);
 
                 function myFunction() {
-                    var input, filter, tr, i, td, txtValue;
+                    var input, filter, table, tr, i, td, txtValue;
                     input = document.getElementById("searchInput");
                     filter = input.value.toUpperCase();
-                    tr = document.querySelector("#searchTable > tbody > tr");
+                    table = document.getElementById("searchTable");
+                    tr = table.getElementsByTagName("tr");
                     for (i = 0; i < tr.length; i++) {
                         td = tr[i].getElementsByTagName("td")[0];
                         txtValue = td.textContent || td.innerText;
