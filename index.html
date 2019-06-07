@@ -235,11 +235,6 @@
                     newelement.innerHTML = blurinput.value;
                     blurinput.parentNode.replaceChild(newelement, blurinput);
                 }
-
-
-
-
-
             </script>
         </div>
         <!-- END OF Part 3 -->
@@ -427,70 +422,96 @@
                 </table>
             </div>
             <script>
-                var targetTable = document.getElementById('searchTable');
+                var search = document.getElementById("searchInput").addEventListener("keyup", myFunction);
 
-                document.getElementById('searchInput').addEventListener('keyup', function (event) {
-                    var searchString = event.target.value;
-                    highlightAndHideInTable(searchString, targetTable);
-                });
-
-                function highlightAndHideInTable(searchString, targetTable) {
-                    removeHighlighSpans(targetTable);
-                    hideRows(searchString, targetTable);
-                    highlightWords(searchString, targetTable);
-                }
-
-                function hideRows(searchString, targetTable) {
-                    // We start at 1 to skip the header row
-                    // Might be cleaner to check if we are in a thead or accept a flag, maybe we want to search the head as well?
-                    for (var k = 1; k < targetTable.rows.length; k++) {
-                        hideRow(searchString, targetTable.rows[k]);
+                function myFunction() {
+                    var input, filter, tr, li, td, i, txtValue;
+                    input = document.getElementById("searchInput");
+                    filter = input.value.toUpperCase();
+                    tr = document.querySelector("#searchTable > thead > tr");
+                    li = ul.getElementsByTagName("th");
+                    for (i = 0; i < li.length; i++) {
+                        td = li[i].getElementsByTagName("td")[0];
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            li[i].style.display = "";
+                        } else {
+                            li[i].style.display = "none";
+                        }
                     }
                 }
 
-                function hideRow(searchString, row) {
-                    // If the row does not contain the searchstring we add the hide class
-                    row.classList.toggle("hide", !rowContains(searchString, row));
-                }
 
-                function rowContains(searchString, row) {
-                    for (var k = 0; k < row.cells.length; k++)
-                        if (row.cells[k].innerHTML.indexOf(searchString) >= 1)
-                            return true;
 
-                    return false;
-                }
 
-                function highlightWords(searchString, targetTable) {
-                    for (var k = 0; k < targetTable.rows.length; k++) {
-                        highlightWordsInRow(searchString, targetTable.rows[k]);
-                    }
-                }
 
-                function highlightWordsInRow(searchString, row) {
-                    for (var k = 0; k < row.cells.length; k++) {
-                        highlightWordsInCell(searchString, row.cells[k]);
-                    }
-                }
 
-                function highlightWordsInCell(searchString, cell) {
-                    cell.innerHTML = cell.innerHTML.split(searchString).join("<span class='highlight'>" + searchString + "</span>");
-                }
 
-                // Can be sped up a bit by caching the queryselector
-                function removeHighlighSpans(table) {
-                    while (table.querySelector('.highlight')) {
-                        unwrap(table.querySelector('.highlight'));
-                    }
-                }
 
-                function unwrap(element) {
-                    while (element.firstChild) {
-                        element.parentNode.insertBefore(element.firstChild, element);
-                    }
+                // var targetTable = document.getElementById('searchTable');
 
-                    element.parentNode.removeChild(element);
-                }            
+                // document.getElementById('searchInput').addEventListener('keyup', function (event) {
+                //     var searchString = event.target.value;
+                //     highlightAndHideInTable(searchString, targetTable);
+                // });
+
+                // function highlightAndHideInTable(searchString, targetTable) {
+                //     removeHighlighSpans(targetTable);
+                //     hideRows(searchString, targetTable);
+                //     highlightWords(searchString, targetTable);
+                // }
+
+                // function hideRows(searchString, targetTable) {
+                //     // We start at 1 to skip the header row
+                //     // Might be cleaner to check if we are in a thead or accept a flag, maybe we want to search the head as well?
+                //     for (var k = 1; k < targetTable.rows.length; k++) {
+                //         hideRow(searchString, targetTable.rows[k]);
+                //     }
+                // }
+
+                // function hideRow(searchString, row) {
+                //     // If the row does not contain the searchstring we add the hide class
+                //     row.classList.toggle("hide", !rowContains(searchString, row));
+                // }
+
+                // function rowContains(searchString, row) {
+                //     for (var k = 0; k < row.cells.length; k++)
+                //         if (row.cells[k].innerHTML.indexOf(searchString) >= 1)
+                //             return true;
+
+                //     return false;
+                // }
+
+                // function highlightWords(searchString, targetTable) {
+                //     for (var k = 0; k < targetTable.rows.length; k++) {
+                //         highlightWordsInRow(searchString, targetTable.rows[k]);
+                //     }
+                // }
+
+                // function highlightWordsInRow(searchString, row) {
+                //     for (var k = 0; k < row.cells.length; k++) {
+                //         highlightWordsInCell(searchString, row.cells[k]);
+                //     }
+                // }
+
+                // function highlightWordsInCell(searchString, cell) {
+                //     cell.innerHTML = cell.innerHTML.split(searchString).join("<span class='highlight'>" + searchString + "</span>");
+                // }
+
+                // // Can be sped up a bit by caching the queryselector
+                // function removeHighlighSpans(table) {
+                //     while (table.querySelector('.highlight')) {
+                //         unwrap(table.querySelector('.highlight'));
+                //     }
+                // }
+
+                // function unwrap(element) {
+                //     while (element.firstChild) {
+                //         element.parentNode.insertBefore(element.firstChild, element);
+                //     }
+
+                //     element.parentNode.removeChild(element);
+                // }            
             </script>
         </div>
         <!-- END OF Part 4 -->
