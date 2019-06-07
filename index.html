@@ -205,28 +205,37 @@
                 // Write your code here
 
 
-
-                document.getElementById("launchMe").addEventListener("click", italian)
+                document.getElementById("launchMe").addEventListener("click", italian);
 
                 function italian() {
                     var pasta = document.querySelectorAll("#listHolder > span");
-
                     pasta.forEach(list);
                 }
 
 
                 function list(span, index, arr) {
                     if (index == arr.length - 1) {
-                        let oldlist = span
-                        let newlist = document.createElement('input');
-                        newlist.setAttribute("placeholder", "Choose your final ingredient.");
+                        let oldli = span;
+                        let newli = document.createElement('input');
+                        newli.setAttribute("placeholder", "Choose your final ingredient.");
+                        oldli.parentNode.replaceChild(newli, oldli);
+                        newli.addEventListener("blur", bringblur);
+                    }
+                    else {
+                        let oldlist = span;
+                        let newlist = document.createElement('li')
+                        newlist.innerHTML = oldlist.innerHTML;
                         oldlist.parentNode.replaceChild(newlist, oldlist);
                     }
-                    let oldlist = span;
-                    let newlist = document.createElement('li')
-                    newlist.innerHTML = oldlist.innerHTML;
-                    oldlist.parentNode.replaceChild(newlist, oldlist);
                 }
+
+                function bringblur() {
+                    let blurinput = document.querySelector("#listHolder > input");
+                    let newelement = document.createElement('li');
+                    newelement.innerHTML = blurinput.value;
+                    blurinput.parentNode.replaceChild(newelement, blurinput);
+                }
+
 
 
 
