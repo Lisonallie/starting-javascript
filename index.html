@@ -424,23 +424,17 @@
             <script>
                 document.getElementById("searchInput").addEventListener("keyup", myFunction);
 
-                function myFunction() {
-                    var input, filter, table, tr, i, td, txtValue;
-                    input = document.getElementById("searchInput");
-                    filter = input.value.toUpperCase();
-                    table = document.getElementById("searchTable");
-                    tr = table.querySelectorAll("#searchTable > tbody > tr");
-                    for (i = 0; i < tr.length; i++) {
-                        td = tr[i].getElementsByTagName("td")[0];
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
 
+                function myFunction() {
+                    const input = document.getElementById("searchInput");
+                    const inputStr = input.value.toUpperCase();
+                    document.querySelectorAll('#searchTable tr:not(.header)').forEach((tr) => {
+                        const anyMatch = [...tr.children]
+                            .some(td => td.textContent.toUpperCase().includes(inputStr));
+                        if (anyMatch) tr.style.removeProperty('display');
+                        else tr.style.display = 'none';
+                    });
+                }
 
 
 
