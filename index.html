@@ -429,7 +429,7 @@
                     input = document.getElementById("searchInput");
                     filter = input.value.toUpperCase();
                     table = document.getElementById("searchTable");
-                    tr = table.getElementsByTagName("tr");
+                    tr = table.querySelectorAll("#searchTable > tbody > tr");
                     for (i = 0; i < tr.length; i++) {
                         td = tr[i].getElementsByTagName("td")[0];
                         txtValue = td.textContent || td.innerText;
