@@ -423,11 +423,12 @@
             </div>
             <script>
                 document.getElementById("searchInput").addEventListener("keyup", myFunction);
-                document.addEventListener('DOMContentLoaded', function () {
-                    var searchpara = document.getElementById("searchTable").innerHTML;
-                    searchpara = searchpara.toString();
-                    document.getElementById("searchInput").onkeydown = function () { highlight_word(searchpara) };
-                }, false);
+                document.getElementById("searchInput").addEventListener("keydown", highlight);
+                // document.addEventListener('DOMContentLoaded', function () {
+                //     var searchpara = document.querySelectorAll("#searchTable > tbody > tr > td").innerHTML;
+                //     searchpara = searchpara.toString();
+                //     document.getElementById("searchInput").onkeydown = function () { highlight_word(searchpara) };
+                // }, false);
 
                 function myFunction() {
                     const input = document.getElementById("searchInput");
@@ -440,19 +441,29 @@
                     });
                 }
 
-                function highlight_word(searchpara) {
-                    var text = document.getElementById("searchInput").value;
-                    if (text.length > 0) {
-                        var pattern = new RegExp("(" + text + ")", "g");
-                        var new_text = searchpara.replace(pattern, "<span class='highlight'>" + text + "</span>");
-                        document.getElementById("searchTable").innerHTML = new_text;
-                    }
-                    else {
-                        if (text = "") {
-                            document.querySelector("#searchTable > span").replace(pattern, text);
-                        }
+                function highlight(text) {
+                    var searchInput = document.getElementById("searchInput");
+                    var innerHTML = searchInput.innerHTML;
+                    var index = innerHTML.indexOf(text);
+                    if (index >= 0) {
+                        innerHTML = innerHTML.substring(0, index) + "<span class='highlight'>" + innerHTML.substring(index, index + text.length) + "</span>" + innerHTML.substring(index + text.length);
+                        searchInput.innerHTML = innerHTML;
                     }
                 }
+
+                // function highlight_word(searchpara) {
+                //     var text = document.getElementById("searchInput").value;
+                //     if (text) {
+                //         var pattern = new RegExp("(" + text + ")", "gi");
+                //         var new_text = searchpara.replace(pattern, "<span class='highlight'>" + text + "</span>");
+                //         document.getElementById("searchTable").innerHTML = new_text;
+                //     }
+                //     else {
+                //         if (text = "") {
+                //             document.querySelector("#searchTable > span").display = none;
+                //         }
+                //     }
+                // }
 
 
 
