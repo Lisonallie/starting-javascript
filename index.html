@@ -423,6 +423,11 @@
             </div>
             <script>
                 document.getElementById("searchInput").addEventListener("keyup", myFunction);
+                document.addEventListener('DOMContentLoaded', function () {
+                    var searchpara = document.getElementById("searchTable").innerHTML;
+                    searchpara = searchpara.toString();
+                    document.getElementById("searchInput").onkeydown = function () { highlight_word(searchpara) };
+                }, false);
 
 
                 function myFunction() {
@@ -434,6 +439,20 @@
                         if (anyMatch) tr.style.removeProperty('display');
                         else tr.style.display = 'none';
                     });
+                }
+
+                function highlight_word(searchpara) {
+                    var text = document.getElementById("searchInput").value;
+                    if (text) {
+                        var pattern = new RegExp("(" + text + ")", "gi");
+                        var new_text = searchpara.replace(pattern, "<span class='highlight'>" + text + "</span>");
+                        document.getElementById("searchTable").innerHTML = new_text;
+                    }
+                    else {
+                        if (text = 0) {
+                            new_text.display = none;
+                        }
+                    }
                 }
 
 
