@@ -429,7 +429,6 @@
                     document.getElementById("searchInput").onkeydown = function () { highlight_word(searchpara) };
                 }, false);
 
-
                 function myFunction() {
                     const input = document.getElementById("searchInput");
                     const inputStr = input.value.toUpperCase();
@@ -443,14 +442,14 @@
 
                 function highlight_word(searchpara) {
                     var text = document.getElementById("searchInput").value;
-                    if (text) {
-                        var pattern = new RegExp("(" + text + ")", "gi");
+                    if (text.length > 0) {
+                        var pattern = new RegExp("(" + text + ")", "g");
                         var new_text = searchpara.replace(pattern, "<span class='highlight'>" + text + "</span>");
                         document.getElementById("searchTable").innerHTML = new_text;
                     }
                     else {
-                        if (text = 0) {
-                            new_text.display = none;
+                        if (text = "") {
+                            document.querySelector("#searchTable > span").replace(pattern, text);
                         }
                     }
                 }
@@ -470,29 +469,11 @@
 
                 // function highlightAndHideInTable(searchString, targetTable) {
                 //     removeHighlighSpans(targetTable);
-                //     hideRows(searchString, targetTable);
                 //     highlightWords(searchString, targetTable);
                 // }
 
-                // function hideRows(searchString, targetTable) {
-                //     // We start at 1 to skip the header row
-                //     // Might be cleaner to check if we are in a thead or accept a flag, maybe we want to search the head as well?
-                //     for (var k = 1; k < targetTable.rows.length; k++) {
-                //         hideRow(searchString, targetTable.rows[k]);
-                //     }
-                // }
-
-                // function hideRow(searchString, row) {
-                //     // If the row does not contain the searchstring we add the hide class
-                //     row.classList.toggle("hide", !rowContains(searchString, row));
-                // }
-
-                // function rowContains(searchString, row) {
-                //     for (var k = 0; k < row.cells.length; k++)
-                //         if (row.cells[k].innerHTML.indexOf(searchString) >= 1)
-                //             return true;
-
-                //     return false;
+                // function highlightWordsInCell(searchString, cell) {
+                //     cell.innerHTML = cell.innerHTML.split(searchString).join("<span class='highlight'>" + searchString + "</span>");
                 // }
 
                 // function highlightWords(searchString, targetTable) {
@@ -505,10 +486,6 @@
                 //     for (var k = 0; k < row.cells.length; k++) {
                 //         highlightWordsInCell(searchString, row.cells[k]);
                 //     }
-                // }
-
-                // function highlightWordsInCell(searchString, cell) {
-                //     cell.innerHTML = cell.innerHTML.split(searchString).join("<span class='highlight'>" + searchString + "</span>");
                 // }
 
                 // // Can be sped up a bit by caching the queryselector
